@@ -1,0 +1,62 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Secrets and environment configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS and IDE
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs and temporary files
+*.log
+tmp/
+temp/
+.cache/
+
+# Qdrant local persistence
+qdrant_storage/
+qdrant_data/
+qdrant/
+
+# Ollama local models
+ollama_models/
+models/
+
+# Generated Lakehouse data
+local_lakehouse/bronze/*
+!local_lakehouse/bronze/.gitkeep
+
+local_lakehouse/silver/*
+!local_lakehouse/silver/.gitkeep
+
+# Gold generated retrieval corpus with vectors
+local_lakehouse/gold/retrieval_chunks.jsonl
+
+# Preserve lightweight reproducibility evidence
+!local_lakehouse/gold/gold_manifest.json
+!local_lakehouse/gold/qdrant_index_manifest.json
+!local_lakehouse/gold/fast_retrieval_benchmark.json
