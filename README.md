@@ -2,60 +2,56 @@
 
 ```mermaid
 flowchart TB
-    Engineer["👷 Engineer / Developer<br/><b>Local CLI</b><br/>Python terminal"]
+    Engineer["Engineer / Developer<br/>Local Python CLI"]
 
-    subgraph DevEnvironment["💻 Local Development Environment"]
-        direction TB
+    subgraph LocalEnvironment["Local Development Environment"]
+        Python["Python 3.x<br/>Pipeline, retrieval, RAG,<br/>evaluation and guard scripts"]
 
-        Python["🐍 Python 3.x<br/>Pipeline, retrieval, RAG,<br/>evaluation and guard scripts"]
+        Ollama["Ollama<br/>Embedding model: nomic-embed-text<br/>Generation model: Qwen 3B or local LLM"]
 
-        Ollama["🦙 Ollama<br/><b>Embedding:</b> nomic-embed-text<br/><b>Generation:</b> Qwen 3B / local LLM"]
-
-        Filesystem["💾 Local File System<br/>local_lakehouse/"]
+        FileSystem["Local File System<br/>local_lakehouse/"]
     end
 
-    subgraph DataLayer["🗂️ Local Lakehouse-Style Knowledge Layer"]
+    subgraph Lakehouse["Local Lakehouse-Style Knowledge Layer"]
         direction LR
 
-        RawDocs["📄 Unstructured Documents<br/>PDF / MD / manuals<br/>service bulletins<br/>troubleshooting notes<br/>work instructions"]
+        RawDocuments["Unstructured Documents<br/>Manuals, service bulletins,<br/>troubleshooting notes, work instructions"]
 
-        StructuredData["📊 Structured Operational Data<br/>assets<br/>maintenance records<br/>work orders<br/>incidents"]
+        StructuredData["Structured Operational Data<br/>Assets, maintenance records,<br/>work orders, incidents"]
 
-        Bronze["🥉 Bronze<br/>Raw documents and tables"]
+        Bronze["Bronze Layer<br/>Raw documents and source tables"]
 
-        Silver["🥈 Silver<br/>Normalized documents<br/>chunks and summaries"]
+        Silver["Silver Layer<br/>Normalized documents,<br/>chunks and summaries"]
 
-        Gold["🥇 Gold<br/>1,000 retrieval-ready chunks<br/>metadata + 768-d vectors<br/>retrieval_chunks.jsonl"]
+        Gold["Gold Layer<br/>1,000 retrieval-ready chunks<br/>metadata and 768-dimensional vectors"]
 
-        RawDocs --> Bronze
+        RawDocuments --> Bronze
         StructuredData --> Bronze
         Bronze -->|"build_local_lakehouse.py"| Silver
-        Silver -->|"chunk + summarize + embed"| Gold
+        Silver -->|"chunk, summarize, embed"| Gold
     end
 
-    subgraph RetrievalService["⚡ Local Hybrid Retrieval Service"]
-        direction TB
+    subgraph Retrieval["Local Hybrid Retrieval Service"]
+        Query["User Query"]
 
-        Query["❓ User Query"]
+        QueryEmbedding["Ollama Query Embedding<br/>nomic-embed-text"]
 
-        EmbedQuery["🦙 Ollama Embedding<br/>nomic-embed-text"]
+        Qdrant["Qdrant Vector Database<br/>Collection: aegis_lakehouse"]
 
-        Qdrant["🔎 Qdrant<br/>Vector Database<br/>Collection: aegis_lakehouse"]
-
-        BM25["🔤 rank-bm25<br/>In-memory lexical index"]
+        BM25["BM25 Keyword Index<br/>rank-bm25, in memory"]
 
         VectorSearch["Semantic Vector Search<br/>Top-K candidates"]
 
-        KeywordSearch["Keyword Search<br/>Top-K candidates"]
+        KeywordSearch["Lexical Keyword Search<br/>Top-K candidates"]
 
-        RRF["🔀 Reciprocal Rank Fusion<br/>RRF"]
+        RRF["Reciprocal Rank Fusion"]
 
-        AssetExpansion["🎯 Exact Asset Candidate Expansion<br/>P-1001 / P-481 etc."]
+        AssetExpansion["Exact Asset Candidate Expansion<br/>Explicit asset ID constraint"]
 
-        AuthorityRerank["🛡️ Schema-Aware Authority Reranking<br/>asset_id exact match<br/>intent detection<br/>document_type<br/>current vs superseded status"]
+        AuthorityRerank["Schema-Aware Authority Reranking<br/>asset_id, intent, document type,<br/>document status and source authority"]
 
-        Query --> EmbedQuery
-        EmbedQuery --> VectorSearch
+        Query --> QueryEmbedding
+        QueryEmbedding --> VectorSearch
         Qdrant --> VectorSearch
 
         Query --> KeywordSearch
@@ -67,46 +63,43 @@ flowchart TB
         AssetExpansion --> AuthorityRerank
     end
 
-    subgraph TrustworthyRAG["✅ Local Trustworthy RAG Layer"]
-        direction TB
+    subgraph RAG["Local Trustworthy RAG Layer"]
+        Evidence["Evidence Selection<br/>Authoritative evidence only"]
 
-        Evidence["📚 Evidence Selection<br/>authoritative chunks only"]
+        Generation["Local LLM Generation<br/>Ordered guidance"]
 
-        Generator["🤖 Local LLM Generation<br/>ordered guidance"]
+        Guard["Knowledge Guard<br/>Grounding, citation validation,<br/>safe refusal"]
 
-        Guard["🛡️ Knowledge Guard<br/>groundedness checks<br/>citation validation<br/>safe refusal"]
+        Response["Final Response<br/>Step-by-step guidance with citations<br/>or explicit refusal"]
 
-        CitedAnswer["📝 Final Response<br/>step-by-step answer<br/>citations for claims<br/>or explicit refusal"]
-
-        Evidence --> Generator
-        Generator --> Guard
+        Evidence --> Generation
         Evidence --> Guard
-        Guard --> CitedAnswer
+        Generation --> Guard
+        Guard --> Response
     end
 
-    subgraph Evaluation["📏 Local Evaluation and Benchmarking"]
-        direction LR
+    subgraph Evaluation["Local Evaluation and Benchmarking"]
+        RetrievalBenchmark["benchmark_lakehouse_fast.py<br/>20 queries, 3 runs each<br/>60 measured runs"]
 
-        FastBenchmark["⏱️ benchmark_lakehouse_fast.py<br/>20 queries × 3 runs<br/>60 measured runs"]
+        RAGEvaluation["evaluate_rag.py<br/>Groundedness, relevance,<br/>citation quality and refusal"]
 
-        RAGEvaluation["🧪 evaluate_rag.py<br/>relevance, grounding,<br/>citation quality, refusal"]
+        Results["Measured Results<br/>100% Top-1 retrieval accuracy<br/>108.95 ms p95 retrieval latency"]
 
-        Results["📈 Proven Result<br/><b>100% Top-1 accuracy</b><br/><b>108.95 ms p95 retrieval</b>"]
+        RetrievalBenchmark --> Results
+        RAGEvaluation --> Results
     end
 
-    Filesystem --> Bronze
-    Filesystem --> StructuredData
+    FileSystem --> Bronze
+    FileSystem --> StructuredData
     Gold -->|"index_lakehouse_qdrant.py"| Qdrant
     Gold --> BM25
 
     Engineer --> Query
     AuthorityRerank --> Evidence
-    CitedAnswer --> Engineer
+    Response --> Engineer
 
-    AuthorityRerank --> FastBenchmark
+    AuthorityRerank --> RetrievalBenchmark
     Guard --> RAGEvaluation
-    FastBenchmark --> Results
-    RAGEvaluation --> Results
 
     classDef user fill:#E8F0FE,stroke:#2563EB,color:#111827,stroke-width:2px;
     classDef local fill:#ECFDF5,stroke:#059669,color:#111827,stroke-width:2px;
@@ -115,12 +108,12 @@ flowchart TB
     classDef guard fill:#FEF2F2,stroke:#DC2626,color:#111827,stroke-width:2px;
     classDef metric fill:#F0FDFA,stroke:#0F766E,color:#111827,stroke-width:2px;
 
-    class Engineer,Query,CitedAnswer user;
-    class Python,Ollama,Filesystem local;
-    class RawDocs,StructuredData,Bronze,Silver,Gold data;
+    class Engineer,Query,Response user;
+    class Python,Ollama,FileSystem local;
+    class RawDocuments,StructuredData,Bronze,Silver,Gold data;
     class Qdrant,BM25,VectorSearch,KeywordSearch,RRF,AssetExpansion,AuthorityRerank search;
-    class Evidence,Generator,Guard guard;
-    class FastBenchmark,RAGEvaluation,Results metric;
+    class Evidence,Generation,Guard guard;
+    class RetrievalBenchmark,RAGEvaluation,Results metric;
 ```
 
 ## Current Local MVP Components
@@ -159,52 +152,52 @@ Sub-second requirement:       PASS
 
 ```mermaid
 flowchart TB
-    Engineer["👷 Engineer<br/>Enterprise user"]
+    Engineer["Engineer"]
 
-    subgraph MicrosoftCloud["☁️ Microsoft Azure and Microsoft Fabric"]
+    subgraph MicrosoftCloud["Microsoft Azure and Microsoft Fabric"]
         direction TB
 
-        subgraph Experience["🗨️ Conversational Experience"]
-            Copilot["🤖 Microsoft Copilot Studio<br/>AEGIS Assistant UI"]
+        subgraph Experience["User Experience"]
+            Copilot["Microsoft Copilot Studio<br/>AEGIS Assistant"]
         end
 
-        subgraph IdentitySecurity["🔐 Identity, Security and Governance"]
-            Entra["🪪 Microsoft Entra ID<br/>authentication<br/>user identity, groups and roles"]
+        subgraph IdentityGovernance["Identity, Security and Governance"]
+            Entra["Microsoft Entra ID<br/>Authentication, user identity,<br/>groups and roles"]
 
-            Purview["🏷️ Microsoft Purview<br/>sensitivity labels<br/>classification and governance"]
+            Purview["Microsoft Purview<br/>Sensitivity labels,<br/>classification and governance"]
 
-            KeyVault["🔑 Azure Key Vault<br/>secrets and configuration"]
+            KeyVault["Azure Key Vault<br/>Secrets and configuration"]
 
-            ManagedIdentity["🆔 Managed Identity<br/>passwordless service access"]
+            ManagedIdentity["Managed Identity<br/>Passwordless service access"]
         end
 
-        subgraph APIPlatform["🚀 API and Trust Layer"]
-            APIM["🌐 Azure API Management<br/>API gateway<br/>OAuth / policies / rate limits"]
+        subgraph APIPlatform["Application and API Platform"]
+            APIM["Azure API Management<br/>OAuth, policies, rate limits<br/>and API audit"]
 
-            ContainerApps["📦 Azure Container Apps<br/>stateless AEGIS FastAPI"]
+            ContainerApps["Azure Container Apps<br/>Stateless AEGIS API hosting"]
 
-            API["🛡️ AEGIS Trust and Authority API<br/>asset + intent extraction<br/>Entra scope resolution<br/>authority policy<br/>citations + grounding + refusal"]
+            AegisAPI["AEGIS Trust and Authority API<br/>Asset and intent extraction<br/>Authorization policy<br/>Authority selection<br/>Citation validation and refusal"]
 
             APIM --> ContainerApps
-            ContainerApps --> API
+            ContainerApps --> AegisAPI
         end
 
-        subgraph FabricPlatform["🏗️ Microsoft Fabric Data Platform"]
-            FabricPipeline["🔄 Fabric Data Pipeline<br/>scheduled refresh"]
+        subgraph FabricPlatform["Microsoft Fabric Knowledge Platform"]
+            FabricPipeline["Fabric Data Pipeline<br/>Scheduled refresh"]
 
-            OneLake["🗄️ OneLake<br/>governed enterprise data foundation"]
+            OneLake["OneLake<br/>Governed data foundation"]
 
-            BronzeAzure["🥉 Fabric Lakehouse Bronze<br/>raw documents and<br/>operational source tables"]
+            BronzeAzure["Fabric Lakehouse Bronze<br/>Raw documents and<br/>operational source tables"]
 
-            SilverAzure["🥈 Fabric Lakehouse Silver<br/>normalized documents<br/>chunks + summaries"]
+            SilverAzure["Fabric Lakehouse Silver<br/>Normalized documents,<br/>chunks and summaries"]
 
-            GoldAzure["🥇 Fabric Lakehouse Gold<br/>retrieval records<br/>metadata + vectors"]
+            GoldAzure["Fabric Lakehouse Gold<br/>Retrieval records,<br/>metadata and embeddings"]
 
-            OperationalTables["📊 Structured Tables<br/>assets, maintenance records<br/>work orders, incidents"]
+            OperationalTables["Structured Operational Tables<br/>Assets, maintenance records,<br/>work orders and incidents"]
 
-            EnterpriseDocs["📄 Enterprise Documents<br/>manuals, bulletins<br/>troubleshooting, procedures"]
+            EnterpriseDocuments["Enterprise Documents<br/>Manuals, service bulletins,<br/>troubleshooting notes and procedures"]
 
-            EnterpriseDocs --> BronzeAzure
+            EnterpriseDocuments --> BronzeAzure
             OperationalTables --> BronzeAzure
             BronzeAzure --> SilverAzure
             SilverAzure --> GoldAzure
@@ -215,61 +208,60 @@ flowchart TB
             FabricPipeline --> GoldAzure
         end
 
-        subgraph AIPlatform["🧠 Azure AI Platform"]
-            AzureOpenAIEmbedding["🧠 Azure OpenAI<br/>Embedding Deployment<br/>Target: text-embedding-3-small<br/>Optional: text-embedding-3-large"]
+        subgraph AIPlatform["Azure AI and Retrieval Platform"]
+            AzureOpenAIEmbedding["Azure OpenAI<br/>Embedding Deployment<br/>Target: text-embedding-3-small<br/>Optional: text-embedding-3-large"]
 
-            AzureAISearch["🔎 Azure AI Search<br/>Hybrid Search<br/>vector + lexical keyword<br/>native RRF + OData filters"]
+            AzureAISearch["Azure AI Search<br/>Hybrid vector and keyword retrieval<br/>RRF and OData metadata filters"]
 
-            AzureOpenAIGeneration["🤖 Azure OpenAI<br/>Chat Deployment<br/>Target: GPT-4.1-mini<br/>Fallback: GPT-4o-mini"]
+            AzureOpenAIGeneration["Azure OpenAI<br/>Grounded response generation<br/>Target: GPT-4.1-mini<br/>Fallback: GPT-4o-mini"]
 
-            GoldAzure -->|"index records + vectors"| AzureAISearch
             GoldAzure -->|"embedding generation"| AzureOpenAIEmbedding
+            GoldAzure -->|"index records and vectors"| AzureAISearch
         end
 
-        subgraph Observability["📈 Observability and Operations"]
-            AppInsights["📊 Application Insights<br/>distributed traces<br/>latency and exceptions"]
+        subgraph Observability["Observability and Operations"]
+            AppInsights["Application Insights<br/>Traces, latency, exceptions<br/>and audit telemetry"]
 
-            AzureMonitor["📉 Azure Monitor<br/>alerts and dashboards"]
+            AzureMonitor["Azure Monitor<br/>Alerts and dashboards"]
 
-            CostManagement["💰 Azure Cost Management<br/>budget alerts<br/>resource tags"]
+            CostManagement["Azure Cost Management<br/>Budgets, tags and alerts"]
 
             AppInsights --> AzureMonitor
         end
     end
 
     Engineer --> Copilot
-    Copilot -->|"signed-in identity"| Entra
+    Copilot -->|"Signed-in identity"| Entra
     Copilot -->|"HTTPS Custom Connector"| APIM
 
-    Entra -->|"groups / roles"| API
-    Purview -->|"labels / classifications"| API
-    KeyVault -->|"secrets"| ContainerApps
-    ManagedIdentity -->|"service authorization"| KeyVault
+    Entra -->|"Groups and roles"| AegisAPI
+    Purview -->|"Labels and classifications"| AegisAPI
+    KeyVault -->|"Secrets"| ContainerApps
+    ManagedIdentity -->|"Authorized access"| KeyVault
 
-    API -->|"asset_id + intent + authorized scopes"| AzureAISearch
-    API -->|"structured operational lookup"| GoldAzure
+    AegisAPI -->|"Asset ID, intent and authorized scopes"| AzureAISearch
+    AegisAPI -->|"Structured operational lookup"| GoldAzure
 
-    AzureAISearch -->|"authorized evidence only"| API
-    API -->|"grounded evidence context"| AzureOpenAIGeneration
-    AzureOpenAIGeneration -->|"draft answer"| API
+    AzureAISearch -->|"Authorized evidence only"| AegisAPI
+    AegisAPI -->|"Grounded evidence context"| AzureOpenAIGeneration
+    AzureOpenAIGeneration -->|"Draft response"| AegisAPI
 
-    API -->|"traces, retrieval latency,<br/>refusals, citation validation"| AppInsights
-    API -->|"cited answer or refusal"| APIM
+    AegisAPI -->|"Latency, retrieval traces,<br/>citation and refusal events"| AppInsights
+    AegisAPI -->|"Cited response or refusal"| APIM
     APIM --> Copilot
     Copilot --> Engineer
 
     classDef user fill:#E8F0FE,stroke:#2563EB,color:#111827,stroke-width:2px;
-    classDef azure fill:#E0F2FE,stroke:#0284C7,color:#111827,stroke-width:2px;
-    classDef fabric fill:#F3E8FF,stroke:#9333EA,color:#111827,stroke-width:2px;
     classDef security fill:#FEF3C7,stroke:#D97706,color:#111827,stroke-width:2px;
-    classDef ai fill:#ECFDF5,stroke:#059669,color:#111827,stroke-width:2px;
     classDef api fill:#FFF7ED,stroke:#EA580C,color:#111827,stroke-width:2px;
+    classDef fabric fill:#F3E8FF,stroke:#9333EA,color:#111827,stroke-width:2px;
+    classDef ai fill:#ECFDF5,stroke:#059669,color:#111827,stroke-width:2px;
     classDef observe fill:#F1F5F9,stroke:#475569,color:#111827,stroke-width:2px;
 
     class Engineer,Copilot user;
     class Entra,Purview,KeyVault,ManagedIdentity security;
-    class APIM,ContainerApps,API api;
-    class FabricPipeline,OneLake,BronzeAzure,SilverAzure,GoldAzure,OperationalTables,EnterpriseDocs fabric;
+    class APIM,ContainerApps,AegisAPI api;
+    class FabricPipeline,OneLake,BronzeAzure,SilverAzure,GoldAzure,OperationalTables,EnterpriseDocuments fabric;
     class AzureOpenAIEmbedding,AzureAISearch,AzureOpenAIGeneration ai;
     class AppInsights,AzureMonitor,CostManagement observe;
 ```
