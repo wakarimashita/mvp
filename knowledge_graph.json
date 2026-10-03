@@ -1,0 +1,36 @@
+{
+  "assets": {
+    "P-481": {
+      "asset_id": "P-481",
+      "documents": [
+        "doc-sb104",
+        "doc-p481-manual-v2"
+      ],
+      "relationships": [
+        {
+          "from": "doc-sb104",
+          "type": "supersedes",
+          "to": "doc-p481-manual-v2"
+        }
+      ]
+    }
+  },
+  "documents": {
+    "doc-sb104": {
+      "id": "doc-sb104",
+      "title": "Service Bulletin SB-104",
+      "version": "1.0",
+      "status": "current",
+      "effective_date": "2026-09-01",
+      "source": "SB-104.pdf"
+    },
+    "doc-p481-manual-v2": {
+      "id": "doc-p481-manual-v2",
+      "title": "Pump P-481 Service Manual",
+      "version": "2.1",
+      "status": "superseded",
+      "effective_date": "2025-01-01",
+      "source": "pump_p481_manual.pdf"
+    }
+  }
+}

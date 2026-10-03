@@ -1,0 +1,1379 @@
+{
+  "generated_at": "2026-10-02T09:42:59.426924+00:00",
+  "dataset": "golden_questions.json",
+  "metrics": {
+    "total_questions": 20,
+    "sufficient_questions": 13,
+    "insufficient_questions": 7,
+    "status_accuracy": 1.0,
+    "source_retrieval_accuracy": 1.0,
+    "answer_relevance": 0.8462,
+    "groundedness": 0.8462,
+    "safe_refusal_accuracy": 1.0,
+    "citation_precision": 0.8846,
+    "citation_completeness": 0.967
+  },
+  "failures": [
+    {
+      "id": "q003",
+      "question": "What changed between the old P-481 manual and the current service bulletin?",
+      "answer": "The pressure sensor for Pump P-481 changed from E17 [C2] to E21 [C1].\n\n- [C2] refers to the superseded service manual v2.1, which specifies pressure sensor E17.\n- [C1] refers to the current service bulletin SB-104 v1.0, which specifies pressure sensor E21.\n\nThis statement concisely addresses the change in the pressure sensor model for Pump P-481 based on the provided evidence, with each citation corresponding to the relevant source.\n\n\\boxed{\\text{The pressure sensor for Pump P-481 changed from E17 [C2] to E21 [C1]}}",
+      "reasons": [
+        "Generated answer does not contain the expected benchmark answer.",
+        "Citation validation failed: answer is not fully grounded."
+      ],
+      "citation_validation": {
+        "valid": false,
+        "valid_ids": true,
+        "used_ids": [
+          "C1",
+          "C2"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 0.5,
+        "supported_citation_pairs": 2,
+        "total_citation_pairs": 4,
+        "min_citation_precision": 1.0,
+        "precision_passed": false,
+        "claim_support_rate": 0.5,
+        "supported_claims": 2,
+        "total_cited_claims": 4,
+        "unsupported_claims": [
+          "The pressure sensor for Pump P-481 changed from E17",
+          "\\boxed{\\text{The pressure sensor for Pump P-481 changed from E17"
+        ],
+        "citation_completeness": 0.571,
+        "total_factual_claims": 7,
+        "cited_claims": 4,
+        "uncited_claims": [
+          "refers to the superseded service manual v2.1, which specifies pressure sensor E17.",
+          "refers to the current service bulletin SB-104 v1.0, which specifies pressure sensor E21.",
+          "This statement concisely addresses the change in the pressure sensor model for Pump P-481 based on the provided evidence, with each citation corresponding to the relevant source."
+        ],
+        "completeness_passed": false,
+        "checks": [
+          {
+            "claim": "The pressure sensor for Pump P-481 changed from E17",
+            "has_citation": true,
+            "supported": false,
+            "citations": [
+              {
+                "citation_id": "C2",
+                "document_id": "doc-p481-manual-v2",
+                "title": "Pump P-481 Service Manual",
+                "source": "pump_p481_manual.pdf",
+                "page": 42,
+                "section": "Pressure Sensor",
+                "status": "superseded",
+                "verdict": "neutral",
+                "score": 0.1231,
+                "supported": false,
+                "label_scores": {
+                  "entailment": 0.44100749492645264,
+                  "contradiction": 0.43586960434913635,
+                  "neutral": 0.12312289327383041
+                }
+              }
+            ]
+          },
+          {
+            "claim": "to E21",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C1",
+                "document_id": "doc-sb104",
+                "title": "Service Bulletin SB-104",
+                "source": "SB-104.pdf",
+                "page": 1,
+                "section": "Pressure Sensor Replacement",
+                "status": "current",
+                "verdict": "entailment",
+                "score": 0.8254,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.8254073262214661,
+                  "neutral": 0.14675956964492798,
+                  "contradiction": 0.02783316932618618
+                }
+              }
+            ]
+          },
+          {
+            "claim": "refers to the superseded service manual v2.1, which specifies pressure sensor E17.",
+            "has_citation": false,
+            "supported": false,
+            "citations": []
+          },
+          {
+            "claim": "refers to the current service bulletin SB-104 v1.0, which specifies pressure sensor E21.",
+            "has_citation": false,
+            "supported": false,
+            "citations": []
+          },
+          {
+            "claim": "This statement concisely addresses the change in the pressure sensor model for Pump P-481 based on the provided evidence, with each citation corresponding to the relevant source.",
+            "has_citation": false,
+            "supported": false,
+            "citations": []
+          },
+          {
+            "claim": "\\boxed{\\text{The pressure sensor for Pump P-481 changed from E17",
+            "has_citation": true,
+            "supported": false,
+            "citations": [
+              {
+                "citation_id": "C2",
+                "document_id": "doc-p481-manual-v2",
+                "title": "Pump P-481 Service Manual",
+                "source": "pump_p481_manual.pdf",
+                "page": 42,
+                "section": "Pressure Sensor",
+                "status": "superseded",
+                "verdict": "neutral",
+                "score": 0.1394,
+                "supported": false,
+                "label_scores": {
+                  "contradiction": 0.46210965514183044,
+                  "entailment": 0.3984606862068176,
+                  "neutral": 0.13942961394786835
+                }
+              }
+            ]
+          },
+          {
+            "claim": "to E21",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C1",
+                "document_id": "doc-sb104",
+                "title": "Service Bulletin SB-104",
+                "source": "SB-104.pdf",
+                "page": 1,
+                "section": "Pressure Sensor Replacement",
+                "status": "current",
+                "verdict": "entailment",
+                "score": 0.8254,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.8254073262214661,
+                  "neutral": 0.14675956964492798,
+                  "contradiction": 0.02783316932618618
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q008",
+      "question": "Does Service Bulletin SB-104 supersede the P-481 Service Manual?",
+      "answer": "Yes, Service Bulletin SB-104 supersedes the Pump P-481 Service Manual [C1].",
+      "reasons": [
+        "Generated answer does not contain the expected benchmark answer."
+      ],
+      "citation_validation": {
+        "valid": true,
+        "valid_ids": true,
+        "used_ids": [
+          "C1"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 1.0,
+        "supported_citation_pairs": 1,
+        "total_citation_pairs": 1,
+        "min_citation_precision": 1.0,
+        "precision_passed": true,
+        "claim_support_rate": 1.0,
+        "supported_claims": 1,
+        "total_cited_claims": 1,
+        "unsupported_claims": [],
+        "citation_completeness": 1.0,
+        "total_factual_claims": 1,
+        "cited_claims": 1,
+        "uncited_claims": [],
+        "completeness_passed": true,
+        "checks": [
+          {
+            "claim": "Yes, Service Bulletin SB-104 supersedes the Pump P-481 Service Manual",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C1",
+                "document_id": "doc-sb104",
+                "title": "Service Bulletin SB-104",
+                "source": "SB-104.pdf",
+                "page": 1,
+                "section": "Pressure Sensor Replacement",
+                "status": "current",
+                "verdict": "entailment",
+                "score": 0.829,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.828982412815094,
+                  "neutral": 0.1607840657234192,
+                  "contradiction": 0.010233510285615921
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q013",
+      "question": "In which section of the old P-481 manual is the pressure sensor specified?",
+      "answer": "The pressure sensor is specified in the \"Pressure Sensor\" section of the old P-481 manual [C2].",
+      "reasons": [
+        "Citation validation failed: answer is not fully grounded."
+      ],
+      "citation_validation": {
+        "valid": false,
+        "valid_ids": true,
+        "used_ids": [
+          "C2"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 0.0,
+        "supported_citation_pairs": 0,
+        "total_citation_pairs": 1,
+        "min_citation_precision": 1.0,
+        "precision_passed": false,
+        "claim_support_rate": 0.0,
+        "supported_claims": 0,
+        "total_cited_claims": 1,
+        "unsupported_claims": [
+          "The pressure sensor is specified in the \"Pressure Sensor\" section of the old P-481 manual"
+        ],
+        "citation_completeness": 1.0,
+        "total_factual_claims": 1,
+        "cited_claims": 1,
+        "uncited_claims": [],
+        "completeness_passed": true,
+        "checks": [
+          {
+            "claim": "The pressure sensor is specified in the \"Pressure Sensor\" section of the old P-481 manual",
+            "has_citation": true,
+            "supported": false,
+            "citations": [
+              {
+                "citation_id": "C2",
+                "document_id": "doc-p481-manual-v2",
+                "title": "Pump P-481 Service Manual",
+                "source": "pump_p481_manual.pdf",
+                "page": 42,
+                "section": "Pressure Sensor",
+                "status": "superseded",
+                "verdict": "neutral",
+                "score": 0.5031,
+                "supported": false,
+                "label_scores": {
+                  "neutral": 0.5030764937400818,
+                  "entailment": 0.47863465547561646,
+                  "contradiction": 0.018288804218173027
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "results": [
+    {
+      "id": "q001",
+      "question": "Which pressure sensor does pump P-481 currently use?",
+      "expected_status": "SUFFICIENT",
+      "actual_status": "SUFFICIENT",
+      "status_correct": true,
+      "expected_answer": "E21",
+      "expected_source": "doc-sb104",
+      "retrieved_source_ids": [
+        "doc-p481-manual-v2",
+        "doc-sb104"
+      ],
+      "source_correct": true,
+      "answer": "Pump P-481 currently uses pressure sensor E21 [C1].",
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": 1.0,
+      "citation_completeness": 1.0,
+      "citation_validation": {
+        "valid": true,
+        "valid_ids": true,
+        "used_ids": [
+          "C1"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 1.0,
+        "supported_citation_pairs": 1,
+        "total_citation_pairs": 1,
+        "min_citation_precision": 1.0,
+        "precision_passed": true,
+        "claim_support_rate": 1.0,
+        "supported_claims": 1,
+        "total_cited_claims": 1,
+        "unsupported_claims": [],
+        "citation_completeness": 1.0,
+        "total_factual_claims": 1,
+        "cited_claims": 1,
+        "uncited_claims": [],
+        "completeness_passed": true,
+        "checks": [
+          {
+            "claim": "Pump P-481 currently uses pressure sensor E21",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C1",
+                "document_id": "doc-sb104",
+                "title": "Service Bulletin SB-104",
+                "source": "SB-104.pdf",
+                "page": 1,
+                "section": "Pressure Sensor Replacement",
+                "status": "current",
+                "verdict": "entailment",
+                "score": 0.9542,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.9541589617729187,
+                  "neutral": 0.027146823704242706,
+                  "contradiction": 0.0186941958963871
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q002",
+      "question": "Which pressure sensor did the old P-481 manual specify?",
+      "expected_status": "SUFFICIENT",
+      "actual_status": "SUFFICIENT",
+      "status_correct": true,
+      "expected_answer": "E17",
+      "expected_source": "doc-p481-manual-v2",
+      "retrieved_source_ids": [
+        "doc-p481-manual-v2",
+        "doc-sb104"
+      ],
+      "source_correct": true,
+      "answer": "The old P-481 manual specified pressure sensor E17 [C2].",
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": 1.0,
+      "citation_completeness": 1.0,
+      "citation_validation": {
+        "valid": true,
+        "valid_ids": true,
+        "used_ids": [
+          "C2"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 1.0,
+        "supported_citation_pairs": 1,
+        "total_citation_pairs": 1,
+        "min_citation_precision": 1.0,
+        "precision_passed": true,
+        "claim_support_rate": 1.0,
+        "supported_claims": 1,
+        "total_cited_claims": 1,
+        "unsupported_claims": [],
+        "citation_completeness": 1.0,
+        "total_factual_claims": 1,
+        "cited_claims": 1,
+        "uncited_claims": [],
+        "completeness_passed": true,
+        "checks": [
+          {
+            "claim": "The old P-481 manual specified pressure sensor E17",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C2",
+                "document_id": "doc-p481-manual-v2",
+                "title": "Pump P-481 Service Manual",
+                "source": "pump_p481_manual.pdf",
+                "page": 42,
+                "section": "Pressure Sensor",
+                "status": "superseded",
+                "verdict": "entailment",
+                "score": 0.8191,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.8191134333610535,
+                  "neutral": 0.17198917269706726,
+                  "contradiction": 0.008897422812879086
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q003",
+      "question": "What changed between the old P-481 manual and the current service bulletin?",
+      "expected_status": "SUFFICIENT",
+      "actual_status": "SUFFICIENT",
+      "status_correct": true,
+      "expected_answer": "The old manual specifies E17, while Service Bulletin SB-104 states that the new pressure sensor is E21.",
+      "expected_source": "doc-sb104",
+      "retrieved_source_ids": [
+        "doc-sb104",
+        "doc-p481-manual-v2"
+      ],
+      "source_correct": true,
+      "answer": "The pressure sensor for Pump P-481 changed from E17 [C2] to E21 [C1].\n\n- [C2] refers to the superseded service manual v2.1, which specifies pressure sensor E17.\n- [C1] refers to the current service bulletin SB-104 v1.0, which specifies pressure sensor E21.\n\nThis statement concisely addresses the change in the pressure sensor model for Pump P-481 based on the provided evidence, with each citation corresponding to the relevant source.\n\n\\boxed{\\text{The pressure sensor for Pump P-481 changed from E17 [C2] to E21 [C1]}}",
+      "answer_relevant": false,
+      "grounded": false,
+      "citation_precision": 0.5,
+      "citation_completeness": 0.571,
+      "citation_validation": {
+        "valid": false,
+        "valid_ids": true,
+        "used_ids": [
+          "C1",
+          "C2"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 0.5,
+        "supported_citation_pairs": 2,
+        "total_citation_pairs": 4,
+        "min_citation_precision": 1.0,
+        "precision_passed": false,
+        "claim_support_rate": 0.5,
+        "supported_claims": 2,
+        "total_cited_claims": 4,
+        "unsupported_claims": [
+          "The pressure sensor for Pump P-481 changed from E17",
+          "\\boxed{\\text{The pressure sensor for Pump P-481 changed from E17"
+        ],
+        "citation_completeness": 0.571,
+        "total_factual_claims": 7,
+        "cited_claims": 4,
+        "uncited_claims": [
+          "refers to the superseded service manual v2.1, which specifies pressure sensor E17.",
+          "refers to the current service bulletin SB-104 v1.0, which specifies pressure sensor E21.",
+          "This statement concisely addresses the change in the pressure sensor model for Pump P-481 based on the provided evidence, with each citation corresponding to the relevant source."
+        ],
+        "completeness_passed": false,
+        "checks": [
+          {
+            "claim": "The pressure sensor for Pump P-481 changed from E17",
+            "has_citation": true,
+            "supported": false,
+            "citations": [
+              {
+                "citation_id": "C2",
+                "document_id": "doc-p481-manual-v2",
+                "title": "Pump P-481 Service Manual",
+                "source": "pump_p481_manual.pdf",
+                "page": 42,
+                "section": "Pressure Sensor",
+                "status": "superseded",
+                "verdict": "neutral",
+                "score": 0.1231,
+                "supported": false,
+                "label_scores": {
+                  "entailment": 0.44100749492645264,
+                  "contradiction": 0.43586960434913635,
+                  "neutral": 0.12312289327383041
+                }
+              }
+            ]
+          },
+          {
+            "claim": "to E21",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C1",
+                "document_id": "doc-sb104",
+                "title": "Service Bulletin SB-104",
+                "source": "SB-104.pdf",
+                "page": 1,
+                "section": "Pressure Sensor Replacement",
+                "status": "current",
+                "verdict": "entailment",
+                "score": 0.8254,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.8254073262214661,
+                  "neutral": 0.14675956964492798,
+                  "contradiction": 0.02783316932618618
+                }
+              }
+            ]
+          },
+          {
+            "claim": "refers to the superseded service manual v2.1, which specifies pressure sensor E17.",
+            "has_citation": false,
+            "supported": false,
+            "citations": []
+          },
+          {
+            "claim": "refers to the current service bulletin SB-104 v1.0, which specifies pressure sensor E21.",
+            "has_citation": false,
+            "supported": false,
+            "citations": []
+          },
+          {
+            "claim": "This statement concisely addresses the change in the pressure sensor model for Pump P-481 based on the provided evidence, with each citation corresponding to the relevant source.",
+            "has_citation": false,
+            "supported": false,
+            "citations": []
+          },
+          {
+            "claim": "\\boxed{\\text{The pressure sensor for Pump P-481 changed from E17",
+            "has_citation": true,
+            "supported": false,
+            "citations": [
+              {
+                "citation_id": "C2",
+                "document_id": "doc-p481-manual-v2",
+                "title": "Pump P-481 Service Manual",
+                "source": "pump_p481_manual.pdf",
+                "page": 42,
+                "section": "Pressure Sensor",
+                "status": "superseded",
+                "verdict": "neutral",
+                "score": 0.1394,
+                "supported": false,
+                "label_scores": {
+                  "contradiction": 0.46210965514183044,
+                  "entailment": 0.3984606862068176,
+                  "neutral": 0.13942961394786835
+                }
+              }
+            ]
+          },
+          {
+            "claim": "to E21",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C1",
+                "document_id": "doc-sb104",
+                "title": "Service Bulletin SB-104",
+                "source": "SB-104.pdf",
+                "page": 1,
+                "section": "Pressure Sensor Replacement",
+                "status": "current",
+                "verdict": "entailment",
+                "score": 0.8254,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.8254073262214661,
+                  "neutral": 0.14675956964492798,
+                  "contradiction": 0.02783316932618618
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q004",
+      "question": "What is the engine oil pressure of pump P-999?",
+      "expected_status": "INSUFFICIENT",
+      "actual_status": "INSUFFICIENT",
+      "status_correct": true,
+      "expected_answer": null,
+      "expected_source": null,
+      "retrieved_source_ids": [],
+      "source_correct": true,
+      "answer": null,
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": null,
+      "citation_completeness": null,
+      "citation_validation": null
+    },
+    {
+      "id": "q005",
+      "question": "Which temperature sensor does pump P-482 use?",
+      "expected_status": "INSUFFICIENT",
+      "actual_status": "INSUFFICIENT",
+      "status_correct": true,
+      "expected_answer": null,
+      "expected_source": null,
+      "retrieved_source_ids": [],
+      "source_correct": true,
+      "answer": null,
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": null,
+      "citation_completeness": null,
+      "citation_validation": null
+    },
+    {
+      "id": "q006",
+      "question": "What is the current pressure sensor for asset P-481?",
+      "expected_status": "SUFFICIENT",
+      "actual_status": "SUFFICIENT",
+      "status_correct": true,
+      "expected_answer": "E21",
+      "expected_source": "doc-sb104",
+      "retrieved_source_ids": [
+        "doc-sb104",
+        "doc-p481-manual-v2"
+      ],
+      "source_correct": true,
+      "answer": "The current pressure sensor for asset P-481 is E21 [C1].",
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": 1.0,
+      "citation_completeness": 1.0,
+      "citation_validation": {
+        "valid": true,
+        "valid_ids": true,
+        "used_ids": [
+          "C1"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 1.0,
+        "supported_citation_pairs": 1,
+        "total_citation_pairs": 1,
+        "min_citation_precision": 1.0,
+        "precision_passed": true,
+        "claim_support_rate": 1.0,
+        "supported_claims": 1,
+        "total_cited_claims": 1,
+        "unsupported_claims": [],
+        "citation_completeness": 1.0,
+        "total_factual_claims": 1,
+        "cited_claims": 1,
+        "uncited_claims": [],
+        "completeness_passed": true,
+        "checks": [
+          {
+            "claim": "The current pressure sensor for asset P-481 is E21",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C1",
+                "document_id": "doc-sb104",
+                "title": "Service Bulletin SB-104",
+                "source": "SB-104.pdf",
+                "page": 1,
+                "section": "Pressure Sensor Replacement",
+                "status": "current",
+                "verdict": "entailment",
+                "score": 0.9593,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.9592868685722351,
+                  "neutral": 0.021844815462827682,
+                  "contradiction": 0.018868224695324898
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q007",
+      "question": "Which document is authoritative for the current P-481 pressure sensor configuration?",
+      "expected_status": "SUFFICIENT",
+      "actual_status": "SUFFICIENT",
+      "status_correct": true,
+      "expected_answer": "Service Bulletin SB-104",
+      "expected_source": "doc-sb104",
+      "retrieved_source_ids": [
+        "doc-sb104",
+        "doc-p481-manual-v2"
+      ],
+      "source_correct": true,
+      "answer": "The authoritative document for the current P-481 pressure sensor configuration is Service Bulletin SB-104 v1.0 [C1].",
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": 1.0,
+      "citation_completeness": 1.0,
+      "citation_validation": {
+        "valid": true,
+        "valid_ids": true,
+        "used_ids": [
+          "C1"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 1.0,
+        "supported_citation_pairs": 1,
+        "total_citation_pairs": 1,
+        "min_citation_precision": 1.0,
+        "precision_passed": true,
+        "claim_support_rate": 1.0,
+        "supported_claims": 1,
+        "total_cited_claims": 1,
+        "unsupported_claims": [],
+        "citation_completeness": 1.0,
+        "total_factual_claims": 1,
+        "cited_claims": 1,
+        "uncited_claims": [],
+        "completeness_passed": true,
+        "checks": [
+          {
+            "claim": "The authoritative document for the current P-481 pressure sensor configuration is Service Bulletin SB-104 v1.0",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C1",
+                "document_id": "doc-sb104",
+                "title": "Service Bulletin SB-104",
+                "source": "SB-104.pdf",
+                "page": 1,
+                "section": "Pressure Sensor Replacement",
+                "status": "current",
+                "verdict": "entailment",
+                "score": 0.5716,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.5716025233268738,
+                  "neutral": 0.41191089153289795,
+                  "contradiction": 0.016486559063196182
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q008",
+      "question": "Does Service Bulletin SB-104 supersede the P-481 Service Manual?",
+      "expected_status": "SUFFICIENT",
+      "actual_status": "SUFFICIENT",
+      "status_correct": true,
+      "expected_answer": "Yes. SB-104 supersedes doc-p481-manual-v2.",
+      "expected_source": "doc-sb104",
+      "retrieved_source_ids": [
+        "doc-sb104",
+        "doc-p481-manual-v2"
+      ],
+      "source_correct": true,
+      "answer": "Yes, Service Bulletin SB-104 supersedes the Pump P-481 Service Manual [C1].",
+      "answer_relevant": false,
+      "grounded": true,
+      "citation_precision": 1.0,
+      "citation_completeness": 1.0,
+      "citation_validation": {
+        "valid": true,
+        "valid_ids": true,
+        "used_ids": [
+          "C1"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 1.0,
+        "supported_citation_pairs": 1,
+        "total_citation_pairs": 1,
+        "min_citation_precision": 1.0,
+        "precision_passed": true,
+        "claim_support_rate": 1.0,
+        "supported_claims": 1,
+        "total_cited_claims": 1,
+        "unsupported_claims": [],
+        "citation_completeness": 1.0,
+        "total_factual_claims": 1,
+        "cited_claims": 1,
+        "uncited_claims": [],
+        "completeness_passed": true,
+        "checks": [
+          {
+            "claim": "Yes, Service Bulletin SB-104 supersedes the Pump P-481 Service Manual",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C1",
+                "document_id": "doc-sb104",
+                "title": "Service Bulletin SB-104",
+                "source": "SB-104.pdf",
+                "page": 1,
+                "section": "Pressure Sensor Replacement",
+                "status": "current",
+                "verdict": "entailment",
+                "score": 0.829,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.828982412815094,
+                  "neutral": 0.1607840657234192,
+                  "contradiction": 0.010233510285615921
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q009",
+      "question": "What pressure sensor is specified in Pump P-481 Service Manual version 2.1?",
+      "expected_status": "SUFFICIENT",
+      "actual_status": "SUFFICIENT",
+      "status_correct": true,
+      "expected_answer": "E17",
+      "expected_source": "doc-p481-manual-v2",
+      "retrieved_source_ids": [
+        "doc-p481-manual-v2",
+        "doc-sb104"
+      ],
+      "source_correct": true,
+      "answer": "Pump P-481 Service Manual version 2.1 specifies pressure sensor E17 [C2].",
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": 1.0,
+      "citation_completeness": 1.0,
+      "citation_validation": {
+        "valid": true,
+        "valid_ids": true,
+        "used_ids": [
+          "C2"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 1.0,
+        "supported_citation_pairs": 1,
+        "total_citation_pairs": 1,
+        "min_citation_precision": 1.0,
+        "precision_passed": true,
+        "claim_support_rate": 1.0,
+        "supported_claims": 1,
+        "total_cited_claims": 1,
+        "unsupported_claims": [],
+        "citation_completeness": 1.0,
+        "total_factual_claims": 1,
+        "cited_claims": 1,
+        "uncited_claims": [],
+        "completeness_passed": true,
+        "checks": [
+          {
+            "claim": "Pump P-481 Service Manual version 2.1 specifies pressure sensor E17",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C2",
+                "document_id": "doc-p481-manual-v2",
+                "title": "Pump P-481 Service Manual",
+                "source": "pump_p481_manual.pdf",
+                "page": 42,
+                "section": "Pressure Sensor",
+                "status": "superseded",
+                "verdict": "entailment",
+                "score": 0.9446,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.9445760250091553,
+                  "neutral": 0.05428732931613922,
+                  "contradiction": 0.0011366438120603561
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q010",
+      "question": "What is the status of the Pump P-481 Service Manual v2.1?",
+      "expected_status": "SUFFICIENT",
+      "actual_status": "SUFFICIENT",
+      "status_correct": true,
+      "expected_answer": "superseded",
+      "expected_source": "doc-p481-manual-v2",
+      "retrieved_source_ids": [
+        "doc-sb104",
+        "doc-p481-manual-v2"
+      ],
+      "source_correct": true,
+      "answer": "Pump P-481 Service Manual v2.1 is superseded [C2].",
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": 1.0,
+      "citation_completeness": 1.0,
+      "citation_validation": {
+        "valid": true,
+        "valid_ids": true,
+        "used_ids": [
+          "C2"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 1.0,
+        "supported_citation_pairs": 1,
+        "total_citation_pairs": 1,
+        "min_citation_precision": 1.0,
+        "precision_passed": true,
+        "claim_support_rate": 1.0,
+        "supported_claims": 1,
+        "total_cited_claims": 1,
+        "unsupported_claims": [],
+        "citation_completeness": 1.0,
+        "total_factual_claims": 1,
+        "cited_claims": 1,
+        "uncited_claims": [],
+        "completeness_passed": true,
+        "checks": [
+          {
+            "claim": "Pump P-481 Service Manual v2.1 is superseded",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C2",
+                "document_id": "doc-p481-manual-v2",
+                "title": "Pump P-481 Service Manual",
+                "source": "pump_p481_manual.pdf",
+                "page": 42,
+                "section": "Pressure Sensor",
+                "status": "superseded",
+                "verdict": "entailment",
+                "score": 0.9185,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.9184976816177368,
+                  "neutral": 0.07783566415309906,
+                  "contradiction": 0.003666735952720046
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q011",
+      "question": "What is the status of Service Bulletin SB-104?",
+      "expected_status": "SUFFICIENT",
+      "actual_status": "SUFFICIENT",
+      "status_correct": true,
+      "expected_answer": "current",
+      "expected_source": "doc-sb104",
+      "retrieved_source_ids": [
+        "doc-sb104",
+        "doc-p481-manual-v2"
+      ],
+      "source_correct": true,
+      "answer": "Service Bulletin SB-104 v1.0 is current. [C1]",
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": 1.0,
+      "citation_completeness": 1.0,
+      "citation_validation": {
+        "valid": true,
+        "valid_ids": true,
+        "used_ids": [
+          "C1"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 1.0,
+        "supported_citation_pairs": 1,
+        "total_citation_pairs": 1,
+        "min_citation_precision": 1.0,
+        "precision_passed": true,
+        "claim_support_rate": 1.0,
+        "supported_claims": 1,
+        "total_cited_claims": 1,
+        "unsupported_claims": [],
+        "citation_completeness": 1.0,
+        "total_factual_claims": 1,
+        "cited_claims": 1,
+        "uncited_claims": [],
+        "completeness_passed": true,
+        "checks": [
+          {
+            "claim": "Service Bulletin SB-104 v1.0 is current",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C1",
+                "document_id": "doc-sb104",
+                "title": "Service Bulletin SB-104",
+                "source": "SB-104.pdf",
+                "page": 1,
+                "section": "Pressure Sensor Replacement",
+                "status": "current",
+                "verdict": "entailment",
+                "score": 0.9674,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.9673575162887573,
+                  "neutral": 0.030785949900746346,
+                  "contradiction": 0.001856529270298779
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q012",
+      "question": "On which page is the P-481 pressure sensor replacement described in SB-104?",
+      "expected_status": "SUFFICIENT",
+      "actual_status": "SUFFICIENT",
+      "status_correct": true,
+      "expected_answer": "page 1",
+      "expected_source": "doc-sb104",
+      "retrieved_source_ids": [
+        "doc-sb104",
+        "doc-p481-manual-v2"
+      ],
+      "source_correct": true,
+      "answer": "The P-481 pressure sensor replacement is described on page 1 of SB-104 [C1].",
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": 1.0,
+      "citation_completeness": 1.0,
+      "citation_validation": {
+        "valid": true,
+        "valid_ids": true,
+        "used_ids": [
+          "C1"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 1.0,
+        "supported_citation_pairs": 1,
+        "total_citation_pairs": 1,
+        "min_citation_precision": 1.0,
+        "precision_passed": true,
+        "claim_support_rate": 1.0,
+        "supported_claims": 1,
+        "total_cited_claims": 1,
+        "unsupported_claims": [],
+        "citation_completeness": 1.0,
+        "total_factual_claims": 1,
+        "cited_claims": 1,
+        "uncited_claims": [],
+        "completeness_passed": true,
+        "checks": [
+          {
+            "claim": "The P-481 pressure sensor replacement is described on page 1 of SB-104",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C1",
+                "document_id": "doc-sb104",
+                "title": "Service Bulletin SB-104",
+                "source": "SB-104.pdf",
+                "page": 1,
+                "section": "Pressure Sensor Replacement",
+                "status": "current",
+                "verdict": "entailment",
+                "score": 0.9845,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.9844983220100403,
+                  "neutral": 0.014868740923702717,
+                  "contradiction": 0.0006328782765194774
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q013",
+      "question": "In which section of the old P-481 manual is the pressure sensor specified?",
+      "expected_status": "SUFFICIENT",
+      "actual_status": "SUFFICIENT",
+      "status_correct": true,
+      "expected_answer": "Pressure Sensor",
+      "expected_source": "doc-p481-manual-v2",
+      "retrieved_source_ids": [
+        "doc-p481-manual-v2",
+        "doc-sb104"
+      ],
+      "source_correct": true,
+      "answer": "The pressure sensor is specified in the \"Pressure Sensor\" section of the old P-481 manual [C2].",
+      "answer_relevant": true,
+      "grounded": false,
+      "citation_precision": 0.0,
+      "citation_completeness": 1.0,
+      "citation_validation": {
+        "valid": false,
+        "valid_ids": true,
+        "used_ids": [
+          "C2"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 0.0,
+        "supported_citation_pairs": 0,
+        "total_citation_pairs": 1,
+        "min_citation_precision": 1.0,
+        "precision_passed": false,
+        "claim_support_rate": 0.0,
+        "supported_claims": 0,
+        "total_cited_claims": 1,
+        "unsupported_claims": [
+          "The pressure sensor is specified in the \"Pressure Sensor\" section of the old P-481 manual"
+        ],
+        "citation_completeness": 1.0,
+        "total_factual_claims": 1,
+        "cited_claims": 1,
+        "uncited_claims": [],
+        "completeness_passed": true,
+        "checks": [
+          {
+            "claim": "The pressure sensor is specified in the \"Pressure Sensor\" section of the old P-481 manual",
+            "has_citation": true,
+            "supported": false,
+            "citations": [
+              {
+                "citation_id": "C2",
+                "document_id": "doc-p481-manual-v2",
+                "title": "Pump P-481 Service Manual",
+                "source": "pump_p481_manual.pdf",
+                "page": 42,
+                "section": "Pressure Sensor",
+                "status": "superseded",
+                "verdict": "neutral",
+                "score": 0.5031,
+                "supported": false,
+                "label_scores": {
+                  "neutral": 0.5030764937400818,
+                  "entailment": 0.47863465547561646,
+                  "contradiction": 0.018288804218173027
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q014",
+      "question": "What is the effective date of Service Bulletin SB-104?",
+      "expected_status": "SUFFICIENT",
+      "actual_status": "SUFFICIENT",
+      "status_correct": true,
+      "expected_answer": "2026-09-01",
+      "expected_source": "doc-sb104",
+      "retrieved_source_ids": [
+        "doc-p481-manual-v2",
+        "doc-sb104"
+      ],
+      "source_correct": true,
+      "answer": "Service Bulletin SB-104 has an effective date of 2026-09-01 [C1].",
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": 1.0,
+      "citation_completeness": 1.0,
+      "citation_validation": {
+        "valid": true,
+        "valid_ids": true,
+        "used_ids": [
+          "C1"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 1.0,
+        "supported_citation_pairs": 1,
+        "total_citation_pairs": 1,
+        "min_citation_precision": 1.0,
+        "precision_passed": true,
+        "claim_support_rate": 1.0,
+        "supported_claims": 1,
+        "total_cited_claims": 1,
+        "unsupported_claims": [],
+        "citation_completeness": 1.0,
+        "total_factual_claims": 1,
+        "cited_claims": 1,
+        "uncited_claims": [],
+        "completeness_passed": true,
+        "checks": [
+          {
+            "claim": "Service Bulletin SB-104 has an effective date of 2026-09-01",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C1",
+                "document_id": "doc-sb104",
+                "title": "Service Bulletin SB-104",
+                "source": "SB-104.pdf",
+                "page": 1,
+                "section": "Pressure Sensor Replacement",
+                "status": "current",
+                "verdict": "entailment",
+                "score": 0.9858,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.9857847094535828,
+                  "neutral": 0.012947702780365944,
+                  "contradiction": 0.001267679501324892
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q015",
+      "question": "What is the effective date of Pump P-481 Service Manual v2.1?",
+      "expected_status": "SUFFICIENT",
+      "actual_status": "SUFFICIENT",
+      "status_correct": true,
+      "expected_answer": "2025-01-01",
+      "expected_source": "doc-p481-manual-v2",
+      "retrieved_source_ids": [
+        "doc-sb104",
+        "doc-p481-manual-v2"
+      ],
+      "source_correct": true,
+      "answer": "The effective date of Pump P-481 Service Manual v2.1 is 2025-01-01 [C2].",
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": 1.0,
+      "citation_completeness": 1.0,
+      "citation_validation": {
+        "valid": true,
+        "valid_ids": true,
+        "used_ids": [
+          "C2"
+        ],
+        "invalid_ids": [],
+        "citation_precision": 1.0,
+        "supported_citation_pairs": 1,
+        "total_citation_pairs": 1,
+        "min_citation_precision": 1.0,
+        "precision_passed": true,
+        "claim_support_rate": 1.0,
+        "supported_claims": 1,
+        "total_cited_claims": 1,
+        "unsupported_claims": [],
+        "citation_completeness": 1.0,
+        "total_factual_claims": 1,
+        "cited_claims": 1,
+        "uncited_claims": [],
+        "completeness_passed": true,
+        "checks": [
+          {
+            "claim": "The effective date of Pump P-481 Service Manual v2.1 is 2025-01-01",
+            "has_citation": true,
+            "supported": true,
+            "citations": [
+              {
+                "citation_id": "C2",
+                "document_id": "doc-p481-manual-v2",
+                "title": "Pump P-481 Service Manual",
+                "source": "pump_p481_manual.pdf",
+                "page": 42,
+                "section": "Pressure Sensor",
+                "status": "superseded",
+                "verdict": "entailment",
+                "score": 0.9503,
+                "supported": true,
+                "label_scores": {
+                  "entailment": 0.9502721428871155,
+                  "neutral": 0.04790767654776573,
+                  "contradiction": 0.001820181030780077
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "q016",
+      "question": "Why was pressure sensor E17 replaced with E21 on pump P-481?",
+      "expected_status": "INSUFFICIENT",
+      "actual_status": "INSUFFICIENT",
+      "status_correct": true,
+      "expected_answer": null,
+      "expected_source": null,
+      "retrieved_source_ids": [],
+      "source_correct": true,
+      "answer": null,
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": null,
+      "citation_completeness": null,
+      "citation_validation": null
+    },
+    {
+      "id": "q017",
+      "question": "Who approved Service Bulletin SB-104?",
+      "expected_status": "INSUFFICIENT",
+      "actual_status": "INSUFFICIENT",
+      "status_correct": true,
+      "expected_answer": null,
+      "expected_source": null,
+      "retrieved_source_ids": [],
+      "source_correct": true,
+      "answer": null,
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": null,
+      "citation_completeness": null,
+      "citation_validation": null
+    },
+    {
+      "id": "q018",
+      "question": "What procedure should a technician follow to install sensor E21 on P-481?",
+      "expected_status": "INSUFFICIENT",
+      "actual_status": "INSUFFICIENT",
+      "status_correct": true,
+      "expected_answer": null,
+      "expected_source": null,
+      "retrieved_source_ids": [],
+      "source_correct": true,
+      "answer": null,
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": null,
+      "citation_completeness": null,
+      "citation_validation": null
+    },
+    {
+      "id": "q019",
+      "question": "What is the serial number range affected by Service Bulletin SB-104?",
+      "expected_status": "INSUFFICIENT",
+      "actual_status": "INSUFFICIENT",
+      "status_correct": true,
+      "expected_answer": null,
+      "expected_source": null,
+      "retrieved_source_ids": [],
+      "source_correct": true,
+      "answer": null,
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": null,
+      "citation_completeness": null,
+      "citation_validation": null
+    },
+    {
+      "id": "q020",
+      "question": "What pressure sensor does pump P-482 currently use?",
+      "expected_status": "INSUFFICIENT",
+      "actual_status": "INSUFFICIENT",
+      "status_correct": true,
+      "expected_answer": null,
+      "expected_source": null,
+      "retrieved_source_ids": [],
+      "source_correct": true,
+      "answer": null,
+      "answer_relevant": true,
+      "grounded": true,
+      "citation_precision": null,
+      "citation_completeness": null,
+      "citation_validation": null
+    }
+  ]
+}

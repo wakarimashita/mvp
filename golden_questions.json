@@ -1,0 +1,142 @@
+[
+  {
+    "id": "q001",
+    "question": "Which pressure sensor does pump P-481 currently use?",
+    "expected_answer": "E21",
+    "expected_source": "doc-sb104",
+    "expected_status": "SUFFICIENT"
+  },
+  {
+    "id": "q002",
+    "question": "Which pressure sensor did the old P-481 manual specify?",
+    "expected_answer": "E17",
+    "expected_source": "doc-p481-manual-v2",
+    "expected_status": "SUFFICIENT"
+  },
+  {
+    "id": "q003",
+    "question": "What changed between the old P-481 manual and the current service bulletin?",
+    "expected_answer": "The old manual specifies E17, while Service Bulletin SB-104 states that the new pressure sensor is E21.",
+    "expected_source": "doc-sb104",
+    "expected_status": "SUFFICIENT"
+  },
+  {
+    "id": "q004",
+    "question": "What is the engine oil pressure of pump P-999?",
+    "expected_answer": null,
+    "expected_source": null,
+    "expected_status": "INSUFFICIENT"
+  },
+  {
+    "id": "q005",
+    "question": "Which temperature sensor does pump P-482 use?",
+    "expected_answer": null,
+    "expected_source": null,
+    "expected_status": "INSUFFICIENT"
+  },
+  {
+    "id": "q006",
+    "question": "What is the current pressure sensor for asset P-481?",
+    "expected_answer": "E21",
+    "expected_source": "doc-sb104",
+    "expected_status": "SUFFICIENT"
+  },
+  {
+    "id": "q007",
+    "question": "Which document is authoritative for the current P-481 pressure sensor configuration?",
+    "expected_answer": "Service Bulletin SB-104",
+    "expected_source": "doc-sb104",
+    "expected_status": "SUFFICIENT"
+  },
+  {
+    "id": "q008",
+    "question": "Does Service Bulletin SB-104 supersede the P-481 Service Manual?",
+    "expected_answer": "Yes. SB-104 supersedes doc-p481-manual-v2.",
+    "expected_source": "doc-sb104",
+    "expected_status": "SUFFICIENT"
+  },
+  {
+    "id": "q009",
+    "question": "What pressure sensor is specified in Pump P-481 Service Manual version 2.1?",
+    "expected_answer": "E17",
+    "expected_source": "doc-p481-manual-v2",
+    "expected_status": "SUFFICIENT"
+  },
+  {
+    "id": "q010",
+    "question": "What is the status of the Pump P-481 Service Manual v2.1?",
+    "expected_answer": "superseded",
+    "expected_source": "doc-p481-manual-v2",
+    "expected_status": "SUFFICIENT"
+  },
+  {
+    "id": "q011",
+    "question": "What is the status of Service Bulletin SB-104?",
+    "expected_answer": "current",
+    "expected_source": "doc-sb104",
+    "expected_status": "SUFFICIENT"
+  },
+  {
+    "id": "q012",
+    "question": "On which page is the P-481 pressure sensor replacement described in SB-104?",
+    "expected_answer": "page 1",
+    "expected_source": "doc-sb104",
+    "expected_status": "SUFFICIENT"
+  },
+  {
+    "id": "q013",
+    "question": "In which section of the old P-481 manual is the pressure sensor specified?",
+    "expected_answer": "Pressure Sensor",
+    "expected_source": "doc-p481-manual-v2",
+    "expected_status": "SUFFICIENT"
+  },
+  {
+    "id": "q014",
+    "question": "What is the effective date of Service Bulletin SB-104?",
+    "expected_answer": "2026-09-01",
+    "expected_source": "doc-sb104",
+    "expected_status": "SUFFICIENT"
+  },
+  {
+    "id": "q015",
+    "question": "What is the effective date of Pump P-481 Service Manual v2.1?",
+    "expected_answer": "2025-01-01",
+    "expected_source": "doc-p481-manual-v2",
+    "expected_status": "SUFFICIENT"
+  },
+  {
+    "id": "q016",
+    "question": "Why was pressure sensor E17 replaced with E21 on pump P-481?",
+    "expected_answer": null,
+    "expected_source": null,
+    "expected_status": "INSUFFICIENT"
+  },
+  {
+    "id": "q017",
+    "question": "Who approved Service Bulletin SB-104?",
+    "expected_answer": null,
+    "expected_source": null,
+    "expected_status": "INSUFFICIENT"
+  },
+  {
+    "id": "q018",
+    "question": "What procedure should a technician follow to install sensor E21 on P-481?",
+    "expected_answer": null,
+    "expected_source": null,
+    "expected_status": "INSUFFICIENT"
+  },
+  {
+    "id": "q019",
+    "question": "What is the serial number range affected by Service Bulletin SB-104?",
+    "expected_answer": null,
+    "expected_source": null,
+    "expected_status": "INSUFFICIENT"
+  },
+  {
+    "id": "q020",
+    "question": "What pressure sensor does pump P-482 currently use?",
+    "expected_answer": null,
+    "expected_source": null,
+    "expected_status": "INSUFFICIENT"
+  }
+]
